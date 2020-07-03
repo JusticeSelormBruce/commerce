@@ -32,6 +32,8 @@ Route::post('admin/assign-privilege', 'MainController@AssignPrivilege');
 Route::post('admin/get-user-roles', 'MainController@getUserRoles')->name('get.user.roles');
 Route::get('admin/user-accounts-index', 'MainController@UserAccountsIndex');
 Route::post('admin/register-user', 'MainController@RegisterUser');
+Route::get('backup-index','MainController@Backupindex');
+Route::get('backup','MainController@Backup');
 
 
 //Reset User Password Route Start

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Backup;
 use App\Role;
 use App\Route;
 
@@ -155,5 +156,18 @@ class MainController extends Controller
     {
         User::whereId(Auth::id())->update(['password' => Hash::make($request->password)]);
         return back()->with('msg', 'User Password Changed Successfully');
+    }
+
+    public function Backup()
+    {
+        $data =['user_id'=>Auth::id(),'process'=>'auto','completed'=>'true','status'=>'up to date'];
+        Backup::create($data);
+        return back()->with('msg','Database Back uped Successfully');
+    }
+
+    public function Backupindex()
+    {
+        $backups = Backup::all();
+        return view('backup',compact('backups'));
     }
 }

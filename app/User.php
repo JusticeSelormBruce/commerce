@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
           return $this->hasMany(Cart::class);
     }
+    public function backups()
+    {
+         return    $this->hasMany(Backup::class);
+    }
 }

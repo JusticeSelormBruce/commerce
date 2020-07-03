@@ -19,6 +19,7 @@ a{
 @section('render')
 @if ($user_state == 1)
 <div class="container pt-lg-5 ">
+    @include('common.alert')
     <div class="jumbotron bg-info mx-0">
 
 <div class="row py-2">
@@ -125,12 +126,12 @@ a{
          </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <div>
-            <img src="{{asset('icons/memory.png')}}" alt="" class=" imgd">
-        </div>
-        <div class="pt-2">
-           Create Backup
-         </div>
+      <a href="/backup-index">  <div>
+        <img src="{{asset('icons/memory.png')}}" alt="" class=" imgd">
+    </div>
+    <div class="pt-2">
+       Create Backup
+     </div></a>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
         <a href="/transaction-history">
