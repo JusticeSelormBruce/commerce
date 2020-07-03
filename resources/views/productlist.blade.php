@@ -14,6 +14,7 @@
 </style>
 <div class="row col-sm pt-2">
     @foreach ($products as $item)
+
     <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="card black ">
             <div class="card-body ">

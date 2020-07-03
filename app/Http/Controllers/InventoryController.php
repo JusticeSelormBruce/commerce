@@ -59,7 +59,9 @@ class InventoryController extends Controller
 
     public function SaveProduct(Request $request)
     {
-        $data = $this->ValidateProductDetails();
+
+        $category =Category::whereId($request->category)->get('category_name')->all();
+        $data = $this->ValidateProductDetails() + ['category'=>$category[0]->category_name,'cat_id'=>$request->category];
         $code = $request->prefix . '' . $request->code;
         Product::create($data + ['sku' => $code]);
         return back()->with('msg', 'Product Added Successfully');
@@ -74,7 +76,7 @@ class InventoryController extends Controller
 
     public function UpdateProduct(Request $request)
     {
-        $data = $this->ValidateProductDetails() + ['sku' => $request->sku];
+        $data = $this->ValidateProductDetails() + ['sku' => $request->sku]; 
         DB::table('products')->where('id', $request->id)->update($data);
         return back()->with('msg', 'Product Updated Successfully');
     }
@@ -95,8 +97,8 @@ class InventoryController extends Controller
     public function ShowProductImages($id)
     {
 
-       $images = Images::where('product_id', $id)->get()->all();
-       return view('Inventory.Items.Products.show',compact('images'));
+        $images = Images::where('product_id', $id)->get()->all();
+        return view('Inventory.Items.Products.show', compact('images'));
     }
     public function CustomersIndex()
     {
@@ -115,7 +117,7 @@ class InventoryController extends Controller
         $data = $this->ValidateCustomerDetails();
         $customer = Customer::create($data);
         $this->storeImage($customer);
-        return back()->with('msg','Customer / Vendor Added Successfully');
+        return back()->with('msg', 'Customer / Vendor Added Successfully');
     }
 
 
@@ -170,7 +172,6 @@ class InventoryController extends Controller
         $data = $request->all() + ['items_id' => $item->id];
         Outorder::create($data);
         return back();
-
     }
 
     public function savePurchaseOrderDetailsTemp(Request $request)
@@ -179,7 +180,6 @@ class InventoryController extends Controller
         $data = $request->all() + ['items_id' => $item->id, 'code' => 100];
         Odertemp::create($data);
         return redirect('purchase-orders');
-
     }
     public function migratetemOders()
     {
@@ -188,30 +188,35 @@ class InventoryController extends Controller
 
         for ($x = 1; $x <= $value->count(); $x++) {
             $id = Odertemp::get('id')->first();
-            $data = Odertemp::get(['vendor','delivery_address','order_code','reference_code','date','delivery_date','items_id','quantity','currency','amount'])->toArray();
+            $data = Odertemp::get(['vendor', 'delivery_address', 'order_code', 'reference_code', 'date', 'delivery_date', 'items_id', 'quantity', 'currency', 'amount'])->toArray();
             Outorder::create($data[0]);
             Odertemp::whereId($id['id'])->delete();
         }
-        return back()->with('msg','Oder was Successful');
+        return back()->with('msg', 'Oder was Successful');
     }
 
     public function StockState()
     {
-        $stock_status = Product::get(['id','name','number','category'])->all();
-      return view('Inventory.out_of_stoke',compact('stock_status'));
+        $stock_status = Product::get(['id', 'name', 'number', 'category'])->all();
+        return view('Inventory.out_of_stoke', compact('stock_status'));
     }
 
+    public function TransactionHistory()
+    {
+        $transactions =  Outorder::all();
+        $items =Product::get(['id','name'])->all();
+        return view('inventory.transaction', compact('transactions','items'));
+    }
     public function ValidateProductDetails()
     {
         return request()->validate([
-            'category' => 'required',
             'name' => 'required',
             'price' => 'required|numeric',
             'number' => 'required|numeric',
             'amount' => 'required|numeric',
             'currency' => 'required',
             'description' => '',
-            'cat_id' => "required|numeric"
+
         ]);
     }
     public function ValidateCustomerDetails()
@@ -252,5 +257,4 @@ class InventoryController extends Controller
             );
         }
     }
-
 }

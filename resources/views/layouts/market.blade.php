@@ -29,6 +29,10 @@
   .black{
       background-color: black!important;
   }
+  .cart-image{
+      width: 30px!important;
+      height: 20px!important;
+  }
 </style>
 <body>
     <div id="app">
@@ -51,8 +55,27 @@
 
                    <ul class="navbar-nav ml-auto pt-1">
 
-                       <li><a href="/login">Login</a></li>
-                       <li><a href="/register" class="mx-2 ">Register</a></li>
+                    @if (Auth::check())
+                      <div class="form-inline">
+                          <?php
+                                      $role_ids = json_decode('[' . Auth::user()->role->routes_ids . ']', true);
+                                      $x =  sizeof($role_ids[0]);
+
+                         ?>
+                         @if ($x = 1)
+                        <a href="/dashboard"><span class="mx-2 small">User Dashboard</span> </a>
+                         @endif
+                          <span class="pt-2"><img src="{{asset('icons/shopping-cart.png')}}" alt="" class="cart-image" title="view cart details"></span>
+                          @if($my_cart == null)
+                          <span class="text-danger">0</span>
+                          @else
+                          <span class="text-danger">{{$my_cart}}</span>
+                          @endif
+                      </div>
+                    @else
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register-customer" class="mx-2 ">Register</a></li>
+                    @endif
                     <li>
                         <form action="/search-anything" method="post" >
                             @csrf

@@ -22,7 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //register user as admin
 Route::get('register-user','HomeController@registrationIndex');
 Route::post('create-user-account','HomeController@createUserAccount');
-
+Route::get('/register-customer','RegisterCustomerController@index');
+Route::post('customer-register','RegisterCustomerController@register');
 // main controller
 Route::get('dashboard', 'MainController@dashboard');
 Route::get('admin/assign-privilege-index', 'MainController@AssignPrivilegeIndex');
@@ -70,6 +71,7 @@ Route::get('stock-is-running-out', 'InventoryController@getRunningOutProducts');
 Route::patch('change-stock-limit', 'InventoryController@updateStockLimit');
 Route::post('/admin/product-save-image','InventoryController@SaveProductImage');
 Route::get('/product/images/show/{id}','InventoryController@ShowProductImages')->name('product.show.image');
+Route::get('/transaction-history','InventoryController@TransactionHistory');
 //********************************************Inventory Controller ending *******************************//
 
 
@@ -80,4 +82,5 @@ Route::get('/product/images/show/{id}','InventoryController@ShowProductImages')-
  Route::post('search-anything','MarketController@SearchAnything');
  Route::get('show-item-details/{id}','MarketController@showProductDetails')->name('item.show');
  Route::get('stock-status','InventoryController@StockState');
+ Route::get('add-item-to-cart/{id}','MarketController@addToCart')->name('add.item.to.cart');
 //market controller end

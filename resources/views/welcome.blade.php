@@ -2,6 +2,7 @@
 @extends('layouts.market')
 @section('content')
 <div class="container-fluid">
+    @include('common.alert')
     <div class="h-50 bg-white">
      <div class="container">
         @include('carousel')

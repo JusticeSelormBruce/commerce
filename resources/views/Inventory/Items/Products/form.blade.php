@@ -10,8 +10,8 @@
         <select name="category" id="fam" required class="form-control w-50 mx-auto" onchange="getFamily()">
             <option value="">Select Product Category</option>
             @foreach($categories as $category)
-                <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                 <input type="hidden" name="cat_id" value="{{$category->id}}">
+
+                <option value="{{$category->id}}">{{$category->category_name}}</option>
                 @endforeach
         </select>
     </div>

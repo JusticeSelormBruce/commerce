@@ -8,6 +8,7 @@
         height: 50vh!important
     }
     }
+ 
 </style>
 @if ($data ==  null)
   <div>

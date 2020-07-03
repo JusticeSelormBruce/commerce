@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Category;
 use App\Images;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 use function Ramsey\Uuid\v1;
 
@@ -28,8 +31,8 @@ class MarketController extends Controller
 
     public function searchResult($id)
     {
-        $result = Category::whereId($id)->get();
-        dd($result);
+        $result = Product::where('cat_id',$id)->get()->all();
+        return view('search.result',compact('result'));
     }
     public function SearchAnything(Request $request)
     {
@@ -39,12 +42,23 @@ class MarketController extends Controller
             $result =   DB::table('products')->where('category', 'Like', '%' . $request->search . '%')->paginate(15);
         }
 
-        return view('search.result');
+        // return view('search.result');
     }
     public function showProductDetails($id)
     {
-         $productDetails = Product::whereId($id)->get();
+        $productDetails = Product::whereId($id)->get();
 
-        return view('view_product',compact('productDetails'));
+        return view('view_product', compact('productDetails'));
+    }
+
+    public function addToCart($id)
+    {
+        if(Auth::check()){
+            Cart::create(['product_id'=>$id, 'user_id'=>Auth::id()]);
+        }
+        else{
+            return redirect('/login')->with('msg','Dear Customer, Kindly login to add Items to your cart');
+        }
+
     }
 }

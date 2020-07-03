@@ -133,13 +133,16 @@ a{
          </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <div>
-            <img src="{{asset('icons/transaction.png')}}" alt="" class=" imgd">
-        </div>
-        <div class="pt-2">
-       View transaction
-       <br> History
-         </div>
+        <a href="/transaction-history">
+            <div>
+                <img src="{{asset('icons/transaction.png')}}" alt="" class=" imgd">
+            </div>
+            <div class="pt-2">
+           View transaction
+           <br> History
+             </div>
+        </a>
+
     </div>
 </div>
 

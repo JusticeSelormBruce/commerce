@@ -52,6 +52,11 @@
                        <p>{{$productDetails[0]->description}}</p>
                    </div>
                </div>
+               <div  class="row pt-2">
+                  <div class="mx-auto"> <a href="{{route('add.item.to.cart',['id'=>$productDetails[0]->id])}}" class="btn btn-sm btn-round btn-danger"> <span>add to cat</span></a></div>
+
+            </div>
+
            </div>
 
 
