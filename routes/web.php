@@ -74,6 +74,8 @@ Route::patch('change-stock-limit', 'InventoryController@updateStockLimit');
 Route::post('/admin/product-save-image','InventoryController@SaveProductImage');
 Route::get('/product/images/show/{id}','InventoryController@ShowProductImages')->name('product.show.image');
 Route::get('/transaction-history','InventoryController@TransactionHistory');
+Route::get('/sales','InventoryController@sales');
+Route::get('/orders','InventoryController@orders');
 //********************************************Inventory Controller ending *******************************//
 
 

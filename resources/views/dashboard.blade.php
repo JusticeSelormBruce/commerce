@@ -45,20 +45,23 @@ a{
 
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <div>
-            <img src="{{asset('icons/pay.png')}}" alt="" class=" imgd">
-        </div>
-        <div class="pt-2">
-                prouct Sales
-         </div>
+        <a href="/sales">
+            <div>
+                <img src="{{asset('icons/pay.png')}}" alt="" class=" imgd">
+            </div>
+            <div class="pt-2">
+                    prouct Sales
+             </div></a>
+
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
+      <a href="/orders">
         <div>
             <img src="{{asset('icons/incoming_order.png')}}" alt="" class=" imgd">
         </div>
         <div class="pt-2">
               Incoming Order
-         </div>
+         </div></a>
     </div>
 </div>
 

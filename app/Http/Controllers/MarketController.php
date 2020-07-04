@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Category;
 use App\Images;
+use App\Order;
 use App\Product;
 use App\Sales;
 use Illuminate\Http\Request;
@@ -57,6 +58,7 @@ class MarketController extends Controller
     {
         if (Auth::check()) {
             Cart::create(['product_id' => $id, 'user_id' => Auth::id()]);
+            return back();
         } else {
             return redirect('/login')->with('msg', 'Dear Customer, Kindly login to add Items to your cart');
         }
@@ -82,6 +84,7 @@ class MarketController extends Controller
             $value = Product::where('id', $ids->product_id)->get()->all();
             $result = Product::where('id', $ids->product_id)->update(['number' => ($value[0]->number - 1)]);
             Sales::create(['product_id' => $value[0]->id, 'user_id' => Auth::id()]);
+            Order::create(['product_id' => $value[0]->id, 'user_id' => Auth::id()]);
             Cart::where('user_id', Auth::id())->delete();
             return redirect('market-place-index')->with('msg', 'Checkout Success');
         }

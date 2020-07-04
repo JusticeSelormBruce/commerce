@@ -6,8 +6,10 @@ use App\Category;
 use App\Customer;
 use App\Images;
 use App\Odertemp;
+use App\Order;
 use App\Outorder;
 use App\Product;
+use App\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -60,8 +62,8 @@ class InventoryController extends Controller
     public function SaveProduct(Request $request)
     {
 
-        $category =Category::whereId($request->category)->get('category_name')->all();
-        $data = $this->ValidateProductDetails() + ['category'=>$category[0]->category_name,'cat_id'=>$request->category];
+        $category = Category::whereId($request->category)->get('category_name')->all();
+        $data = $this->ValidateProductDetails() + ['category' => $category[0]->category_name, 'cat_id' => $request->category];
         $code = $request->prefix . '' . $request->code;
         Product::create($data + ['sku' => $code]);
         return back()->with('msg', 'Product Added Successfully');
@@ -76,7 +78,7 @@ class InventoryController extends Controller
 
     public function UpdateProduct(Request $request)
     {
-        $data = $this->ValidateProductDetails() + ['sku' => $request->sku]; 
+        $data = $this->ValidateProductDetails() + ['sku' => $request->sku];
         DB::table('products')->where('id', $request->id)->update($data);
         return back()->with('msg', 'Product Updated Successfully');
     }
@@ -204,8 +206,19 @@ class InventoryController extends Controller
     public function TransactionHistory()
     {
         $transactions =  Outorder::all();
-        $items =Product::get(['id','name'])->all();
-        return view('inventory.transaction', compact('transactions','items'));
+        $items = Product::get(['id', 'name'])->all();
+        return view('inventory.transaction', compact('transactions', 'items'));
+    }
+
+    public function sales()
+    {
+        $sales = Sales::all();
+        return view('Inventory.sales', compact('sales'));
+    }
+    public function orders()
+    {
+        $orders = Order::all();
+        return view('Inventory.order',compact('orders'));
     }
     public function ValidateProductDetails()
     {
