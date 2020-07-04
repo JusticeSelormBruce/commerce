@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>University Archieve</title>
+    <title>Final Project</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -31,7 +31,7 @@
   }
   .cart-image{
       width: 30px!important;
-      height: 20px!important;
+      height: 25px!important;
   }
 </style>
 <body>
@@ -65,7 +65,10 @@
                          @if ($x = 1)
                         <a href="/dashboard"><span class="mx-2 small">User Dashboard</span> </a>
                          @endif
-                          <span class="pt-2"><img src="{{asset('icons/shopping-cart.png')}}" alt="" class="cart-image" title="view cart details"></span>
+                          <span class="pt-2">
+                            <a href="/check-out">
+                            <img src="{{asset('icons/shopping-cart.png')}}" alt="" class="cart-image" title="check-out">
+                        </a></span>
                           @if($my_cart == null)
                           <span class="text-danger">0</span>
                           @else

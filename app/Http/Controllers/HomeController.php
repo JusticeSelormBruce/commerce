@@ -29,7 +29,7 @@ class HomeController extends Controller
         $role_ids = json_decode('[' . Auth::user()->role->routes_ids . ']', true);
         if (sizeof($role_ids[0]) < 3) {
             Session::put('state',0);
-            return view('greetings');
+             return redirect('market-place-index');
         } else {
             Session::put('state',1);
             return view('home')->with('msg', 'Welcome' . Auth::user()->name . ' Please complete authentication  face 2 to continue');;

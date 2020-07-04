@@ -8,7 +8,7 @@
         height: 50vh!important
     }
     }
- 
+
 </style>
 @if ($data ==  null)
   <div>
@@ -26,33 +26,25 @@
       <div class="carousel-item active">
        @if ($data->count() >= 1)
        <img src="{{Storage::url($data[0]->path)}}" class="d-block w-100" alt="...">
-       <div class="carousel-caption d-none d-md-block">
-       <a href="" class="btn btn-light shadow-lg btn-sm small">Visit UG main page</a>
-       </div>
+
        @endif
       </div>
       <div class="carousel-item">
         @if ($data->count() >= 1)
         <img src="{{Storage::url($data[1]->path)}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-            <a href="" class="btn btn-light shadow-lg btn-sm small">Visit CU main page</a>
-        </div>
+
         @endif
       </div>
       <div class="carousel-item">
         @if ($data->count() >=3)
         <img src="{{Storage::url($data[2]->path)}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-            <a href="" class="btn btn-light shadow-lg btn-sm small">Visit KNUST main page</a>
-        </div>
+
         @endif
       </div>
       <div class="carousel-item">
         @if ($data->count() == 4)
         <img src="{{Storage::url($data[3]->path)}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-            <a href="" class="btn btn-light shadow-lg btn-sm small">Visit UCC main page</a>
-        </div>
+       
         @endif
       </div>
 

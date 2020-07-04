@@ -85,4 +85,7 @@ Route::get('/transaction-history','InventoryController@TransactionHistory');
  Route::get('show-item-details/{id}','MarketController@showProductDetails')->name('item.show');
  Route::get('stock-status','InventoryController@StockState');
  Route::get('add-item-to-cart/{id}','MarketController@addToCart')->name('add.item.to.cart');
+ Route::get('check-out','MarketController@checkout');
+ Route::get('confirm-check-out','MarketController@processCheckout');
+ Route::get('drop-item/{id}','MarketController@dropItem')->name('item.drop');
 //market controller end
