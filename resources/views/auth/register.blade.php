@@ -1,11 +1,15 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-lg-4 col-md-4col-sm-12">
+            <img src="{{asset('icons/shopping-cart.png')}}"  alt="">
+        </div>
+        <div class="col-md-8 mt-lg-5 mt-md-5 mt-sm-1">
 
-                <div class="card-body">
+            <div class="">
+                <div class="">{{ __('Register') }}</div>
+
+                <div class="">
                     <form method="POST" action="/admin/register-user">
                         @csrf
                       <div class="alert alert-primary" role="alert">

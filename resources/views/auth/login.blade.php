@@ -3,12 +3,15 @@
 @section('content')
 <div class="container">
     @include('common.alert')
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-info"></div>
+    <div class="row justify-content-center pt-5">
+        <div class="col-lg-4 col-md-4col-sm-12">
+            <img src="{{asset('icons/shopping-cart.png')}}"  alt="">
+        </div>
+        <div class="col-md-8 mt-lg-5 mt-md-5 mt-sm-1">
+            <div class="">
+                <div class="bg-light"></div>
 
-                <div class="card-body bg-success">
+                <div class="card-body bg-dark text-light">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

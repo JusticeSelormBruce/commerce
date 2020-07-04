@@ -1,11 +1,14 @@
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-info">Multifactor Authentication face 2</div>
+    <div class="row justify-content-center text-light">
+        <div class="col-lg-4 col-md-4col-sm-12">
+            <img src="{{asset('icons/shopping-cart.png')}}"  alt="">
+        </div>
+        <div class="col-md-8 mt-lg-5 mt-md-5 mt-sm-1">
+            <div class="mt-3">
+                <div class="">Multifactor Authentication face 2</div>
 
-                <div class="card-body bg-success ">
+                <div class=" ">
                     <form method="POST" action="/user1-auth">
                         @csrf
 
